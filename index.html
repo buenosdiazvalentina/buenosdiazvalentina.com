@@ -6,42 +6,31 @@
   <meta name="description" content="buenosdiazvalentina — obras">
   <title>buenosdiazvalentina</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <a class="skip-link" href="#obras">Ir a las obras</a>
-
   <header class="site-header">
-    <a class="brand" href="#inicio" aria-label="Ir al inicio">
-      buenosdiazvalentina
-    </a>
+    <a class="brand" href="#inicio">buenosdiazvalentina</a>
 
-    <nav class="site-nav" aria-label="Navegación principal">
+    <nav class="site-nav" aria-label="Navegación">
       <a href="#obras">obras</a>
       <a href="#contacto">contacto</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero" id="inicio" aria-label="Portada">
+    <section class="hero" id="inicio">
       <button
-        class="hero-image image-button"
+        class="image-button hero-image"
         type="button"
-        data-image="./portada.jpg"
+        data-image="https://buenosdiazvalentina.github.io/portada.jpg"
         data-alt="Obra de portada de buenosdiazvalentina"
         aria-label="Abrir obra de portada"
       >
         <img
-          src="./portada.jpg"
+          src="https://buenosdiazvalentina.github.io/portada.jpg"
           alt="Obra de portada de buenosdiazvalentina"
-          width="1600"
-          height="2000"
-          fetchpriority="high"
         >
       </button>
     </section>
@@ -57,17 +46,14 @@
           <button
             class="image-button"
             type="button"
-            data-image="./obra01.jpg"
+            data-image="https://buenosdiazvalentina.github.io/obra01.jpg"
             data-alt="Obra 01 de buenosdiazvalentina"
             aria-label="Abrir obra 01"
           >
             <img
-              src="./obra01.jpg"
+              src="https://buenosdiazvalentina.github.io/obra01.jpg"
               alt="Obra 01"
-              width="1200"
-              height="1600"
               loading="lazy"
-              decoding="async"
             >
           </button>
           <p class="work-label">obra 01</p>
@@ -77,17 +63,14 @@
           <button
             class="image-button"
             type="button"
-            data-image="./obra02.jpg"
+            data-image="https://buenosdiazvalentina.github.io/obra02.jpg"
             data-alt="Obra 02 de buenosdiazvalentina"
             aria-label="Abrir obra 02"
           >
             <img
-              src="./obra02.jpg"
+              src="https://buenosdiazvalentina.github.io/obra02.jpg"
               alt="Obra 02"
-              width="1200"
-              height="1600"
               loading="lazy"
-              decoding="async"
             >
           </button>
           <p class="work-label">obra 02</p>
@@ -97,17 +80,14 @@
           <button
             class="image-button"
             type="button"
-            data-image="./obra03.jpg"
+            data-image="https://buenosdiazvalentina.github.io/obra03.jpg"
             data-alt="Obra 03 de buenosdiazvalentina"
             aria-label="Abrir obra 03"
           >
             <img
-              src="./obra03.jpg"
+              src="https://buenosdiazvalentina.github.io/obra03.jpg"
               alt="Obra 03"
-              width="1200"
-              height="1600"
               loading="lazy"
-              decoding="async"
             >
           </button>
           <p class="work-label">obra 03</p>
@@ -117,17 +97,14 @@
           <button
             class="image-button"
             type="button"
-            data-image="./isla-valentina.jpg"
+            data-image="https://buenosdiazvalentina.github.io/isla-valentina.jpg"
             data-alt="Isla Valentina, obra de buenosdiazvalentina"
             aria-label="Abrir Isla Valentina"
           >
             <img
-              src="./isla-valentina.jpg"
+              src="https://buenosdiazvalentina.github.io/isla-valentina.jpg"
               alt="Isla Valentina"
-              width="1600"
-              height="1100"
               loading="lazy"
-              decoding="async"
             >
           </button>
           <p class="work-label">isla valentina</p>
@@ -145,11 +122,11 @@
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> buenosdiazvalentina</p>
+    <p>© 2026 buenosdiazvalentina</p>
     <a href="#inicio">volver arriba ↑</a>
   </footer>
 
-  <dialog class="lightbox" id="lightbox" aria-label="Vista ampliada de obra">
+  <dialog class="lightbox" id="lightbox">
     <button class="lightbox-close" type="button" aria-label="Cerrar imagen">×</button>
     <img id="lightbox-image" src="" alt="">
   </dialog>
@@ -158,9 +135,8 @@
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightbox-image");
     const closeButton = document.querySelector(".lightbox-close");
-    const imageButtons = document.querySelectorAll(".image-button");
 
-    imageButtons.forEach((button) => {
+    document.querySelectorAll(".image-button").forEach((button) => {
       button.addEventListener("click", () => {
         lightboxImage.src = button.dataset.image;
         lightboxImage.alt = button.dataset.alt;
@@ -177,13 +153,6 @@
         lightbox.close();
       }
     });
-
-    lightbox.addEventListener("close", () => {
-      lightboxImage.src = "";
-      lightboxImage.alt = "";
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
