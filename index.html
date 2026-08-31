@@ -1,44 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buenos Diaz Valentina</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="buenosdiazvalentina — obras">
+  <title>buenosdiazvalentina</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <a class="skip-link" href="#obras">Ir a las obras</a>
 
-  <header class="hero">
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio">
+      buenosdiazvalentina
+    </a>
 
-    <img src="isla-valentina.jpg.JPG" alt="Valentina Diaz">
-
-    <h1>BUENOSDIAZVALENTINA</h1>
-
-    <p>Esta es mi primera página web publicada con GitHub Pages.</p>
-
-    <a href="#contacto" class="btn">Contáctame</a>
-
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="#obras">obras</a>
+      <a href="#contacto">contacto</a>
+    </nav>
   </header>
 
   <main>
-
-    <section>
-      <h2>Sobre mí</h2>
-      <p>Estoy creando mi primera web desde cero.</p>
+    <section class="hero" id="inicio" aria-label="Portada">
+      <button
+        class="hero-image image-button"
+        type="button"
+        data-image="portada.jpg"
+        data-alt="Obra de portada de buenosdiazvalentina"
+        aria-label="Abrir obra de portada"
+      >
+        <img
+          src="portada.jpg"
+          alt="Obra de portada de buenosdiazvalentina"
+          width="1600"
+          height="2000"
+          fetchpriority="high"
+        >
+      </button>
     </section>
 
-    <section>
-      <h2>Proyectos</h2>
-      <p>Aquí después pondrás tus trabajos, links o fotos.</p>
+    <section class="works-section" id="obras">
+      <div class="section-heading">
+        <p>selección</p>
+        <h1>obras</h1>
+      </div>
+
+      <div class="gallery">
+        <article class="work work-large">
+          <button
+            class="image-button"
+            type="button"
+            data-image="obra01.jpg"
+            data-alt="Obra 01 de buenosdiazvalentina"
+            aria-label="Abrir obra 01"
+          >
+            <img
+              src="obra01.jpg"
+              alt="Obra 01"
+              width="1200"
+              height="1600"
+              loading="lazy"
+              decoding="async"
+            >
+          </button>
+          <p class="work-label">obra 01</p>
+        </article>
+
+        <article class="work">
+          <button
+            class="image-button"
+            type="button"
+            data-image="obra02.jpg"
+            data-alt="Obra 02 de buenosdiazvalentina"
+            aria-label="Abrir obra 02"
+          >
+            <img
+              src="obra02.jpg"
+              alt="Obra 02"
+              width="1200"
+              height="1600"
+              loading="lazy"
+              decoding="async"
+            >
+          </button>
+          <p class="work-label">obra 02</p>
+        </article>
+
+        <article class="work">
+          <button
+            class="image-button"
+            type="button"
+            data-image="obra03.jpg"
+            data-alt="Obra 03 de buenosdiazvalentina"
+            aria-label="Abrir obra 03"
+          >
+            <img
+              src="obra03.jpg"
+              alt="Obra 03"
+              width="1200"
+              height="1600"
+              loading="lazy"
+              decoding="async"
+            >
+          </button>
+          <p class="work-label">obra 03</p>
+        </article>
+
+        <article class="work work-wide">
+          <button
+            class="image-button"
+            type="button"
+            data-image="isla-valentina.jpg"
+            data-alt="Isla Valentina, obra de buenosdiazvalentina"
+            aria-label="Abrir Isla Valentina"
+          >
+            <img
+              src="isla-valentina.jpg"
+              alt="Isla Valentina"
+              width="1600"
+              height="1100"
+              loading="lazy"
+              decoding="async"
+            >
+          </button>
+          <p class="work-label">isla valentina</p>
+        </article>
+      </div>
     </section>
 
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>Email: buenosdiazvalentina@gmail.com</p>
+    <section class="contact-section" id="contacto">
+      <p class="contact-label">contacto</p>
+      <a class="email-link" href="mailto:buenosdiazvalentina@gmail.com">
+        buenosdiazvalentina@gmail.com
+      </a>
     </section>
-
   </main>
 
+  <footer class="site-footer">
+    <p>© <span id="year"></span> buenosdiazvalentina</p>
+    <a href="#inicio">volver arriba ↑</a>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Vista ampliada de obra">
+    <button class="lightbox-close" type="button" aria-label="Cerrar imagen">×</button>
+    <img id="lightbox-image" src="" alt="">
+  </dialog>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const closeButton = document.querySelector(".lightbox-close");
+    const imageButtons = document.querySelectorAll(".image-button");
+
+    imageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        lightboxImage.src = button.dataset.image;
+        lightboxImage.alt = button.dataset.alt;
+        lightbox.showModal();
+      });
+    });
+
+    closeButton.addEventListener("click", () => {
+      lightbox.close();
+    });
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        lightbox.close();
+      }
+    });
+
+    lightbox.addEventListener("close", () => {
+      lightboxImage.src = "";
+      lightboxImage.alt = "";
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
