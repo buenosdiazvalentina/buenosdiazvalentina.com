@@ -7,7 +7,7 @@
   <title>BUENOSDIAZVALENTINA</title>
   <link rel="stylesheet" href="./style.css">
   <style>
-    /* Estilos estéticos avanzados estilo editorial boutique unificados */
+    /* Estilos estéticos avanzados estilo editorial boutique */
     body {
         background-color: #fcfcfc;
         color: #2c2c2c;
@@ -25,7 +25,6 @@
         background: rgba(252, 252, 252, 0.95);
         border-bottom: 1px solid #f0f0f0;
         z-index: 1000;
-        font-family: inherit;
     }
     /* Nombre al centro en mayúscula */
     .site-header h1 {
@@ -41,7 +40,6 @@
         letter-spacing: 0.2em;
         font-size: 0.9rem;
         text-transform: uppercase;
-        font-family: inherit;
     }
     .site-header h1 a:hover {
         color: #777777;
@@ -82,7 +80,6 @@
         gap: 16px;
         z-index: 1100;
         min-width: 160px;
-        font-family: inherit;
     }
     .dropdown-contacto.activo {
         display: flex;
@@ -107,18 +104,18 @@
     /* Sección de Portada */
     .seccion-portada {
         width: 100vw;
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: #000;
-        overflow: hidden;
+        overflow-x: hidden;
     }
     .contenedor-video {
         position: relative;
         width: 100%;
-        height: calc(100vh - 60px);
+        height: 100vh;
         cursor: pointer;
     }
     .video-portada {
@@ -146,56 +143,54 @@
         padding: 10px 20px;
         border-radius: 20px;
         backdrop-filter: blur(4px);
-        font-family: inherit;
     }
     
-    /* Contacto debajo de la portada */
+    /* Contacto más alejado hacia abajo de la portada */
     .footer-contacto {
         width: 100%;
         background-color: #fcfcfc;
         text-align: center;
-        padding: 20px 0;
+        padding: 80px 0;
         font-size: 0.8rem;
-        letter-spacing: 0.15em;
-        text-transform: lowercase;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
         border-top: 1px solid #f0f0f0;
-        font-family: inherit;
     }
     .footer-contacto a {
-        color: #2c2c2c;
+        color: #1a1a1a;
         text-decoration: none;
-        font-family: inherit;
     }
     .footer-contacto a:hover {
         color: #777777;
     }
 
-    /* Página intermedia: Acuarela y Cerámica más centrados y con tipografía unificada */
+    /* Página intermedia: Acuarela y Cerámica más centrada y con tipografía editorial */
     .seccion-categorias {
         width: 100vw;
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 60px;
+        gap: 80px;
         background-color: #fcfcfc;
-        padding-top: 0;
-        font-family: inherit;
+        padding-top: 80px;
     }
     .opcion-categoria {
         background: none;
         border: none;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        font-weight: 400;
         letter-spacing: 0.2em;
-        text-transform: lowercase;
-        color: #2c2c2c;
+        text-transform: uppercase;
+        color: #1a1a1a;
         cursor: pointer;
-        padding: 15px 30px;
+        padding: 10px 20px;
         transition: opacity 0.3s ease;
         font-family: inherit;
     }
     .opcion-categoria:hover {
-        opacity: 0.5;
+        color: #777777;
+        opacity: 1;
     }
 
     /* Galería y textos en negro y gris */
@@ -203,7 +198,6 @@
         max-width: 1600px;
         margin: 0 auto;
         padding: 140px 40px 80px 40px;
-        font-family: inherit;
     }
     .grid-galeria {
         display: grid;
@@ -231,7 +225,6 @@
         cursor: pointer;
         text-transform: lowercase;
         padding: 10px 20px;
-        font-family: inherit;
     }
     .btn-volver:hover {
         color: #1a1a1a;
@@ -255,7 +248,6 @@
         justify-content: center;
         align-items: center;
         padding: 40px;
-        font-family: inherit;
     }
     .modal-obra.activo {
         display: flex;
@@ -290,7 +282,6 @@
         letter-spacing: 0.15em;
         text-transform: lowercase;
         color: #1a1a1a;
-        font-family: inherit;
     }
     .modal-info p {
         font-size: 0.85rem;
@@ -298,7 +289,6 @@
         color: #666666;
         text-transform: lowercase;
         line-height: 1.6;
-        font-family: inherit;
     }
     .btn-cerrar-modal {
         position: absolute;
@@ -311,7 +301,6 @@
         cursor: pointer;
         color: #1a1a1a;
         text-transform: lowercase;
-        font-family: inherit;
     }
     .btn-cerrar-modal:hover {
         color: #777777;
@@ -378,13 +367,13 @@
                     <span class="texto-explorar">explorar obras [ + ]</span>
                 </div>
             </div>
-            <!-- Contacto debajo de la portada -->
+            <!-- Contacto separado y alejado de la portada -->
             <div class="footer-contacto">
                 <a href="mailto:Buenosdiazvalentina@gmail.com">contacto: Buenosdiazvalentina@gmail.com</a>
             </div>
         </section>
 
-        <!-- 2. SECCIÓN DE CATEGORÍAS (Acuarela y Cerámica) -->
+        <!-- 2. SECCIÓN DE CATEGORÍAS (Acuarela y Cerámica centradas y con tipografía editorial) -->
         <section class="seccion-categorias oculto" id="seccionCategorias">
             <button class="opcion-categoria" id="btnAcuarela">acuarela</button>
             <button class="opcion-categoria" id="btnCeramica">cerámica</button>
