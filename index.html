@@ -8,153 +8,24 @@
   <title>buenosdiazvalentina</title>
 
   <link rel="stylesheet" href="./style.css">
-</head>
 
-<body>
-  <header class="site-header">
-    <a class="brand" href="#inicio">buenosdiazvalentina</a>
+<body><section class="galeria-obras">
+    <h2>Galería de Arte</h2>
+    
+    <div class="grid-galeria">
+        <div class="tarjeta-obra">
+            <img src="Obra1.png" alt="Obra de arte 1">
+        </div>
+        
+        <div class="tarjeta-obra">
+            <img src="Obra2.png" alt="Obra de arte 2">
+        </div>
+        
+        <div class="tarjeta-obra">
+            <img src="Obra3.png" alt="Obra de arte 3">
+        </div>
+    </div>
+</section>
 
-    <nav class="site-nav" aria-label="Navegación principal">
-      <a href="#obras">obras</a>
-      <a href="#contacto">contacto</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="inicio">
-      <button
-        class="image-button hero-image"
-        type="button"
-        data-image="./portada.JPG"
-        data-alt="Obra de portada de buenosdiazvalentina"
-        aria-label="Abrir imagen de portada"
-      >
-        <img
-          src="./portada.JPG"
-          alt="Obra de portada de buenosdiazvalentina"
-          width="1600"
-          height="2000"
-        >
-      </button>
-    </section>
-
-    <section class="works-section" id="obras">
-      <div class="section-heading">
-        <p>selección</p>
-        <h1>obras</h1>
-      </div>
-
-      <div class="gallery">
-        <article class="work work-large">
-          <button
-            class="image-button"
-            type="button"
-            data-image="./obra1.JPG"
-            data-alt="Obra 1 de buenosdiazvalentina"
-            aria-label="Abrir obra 1"
-          >
-            <img
-              src="./obra1.JPG"
-              alt="Obra 1"
-              width="1200"
-              height="1600"
-              loading="lazy"
-            >
-          </button>
-          <p class="work-label">obra 01</p>
-        </article>
-
-        <article class="work">
-          <button
-            class="image-button"
-            type="button"
-            data-image="./obra2.JPG"
-            data-alt="Obra 2 de buenosdiazvalentina"
-            aria-label="Abrir obra 2"
-          >
-            <img
-              src="./obra2.JPG"
-              alt="Obra 2"
-              width="1200"
-              height="1600"
-              loading="lazy"
-            >
-          </button>
-          <p class="work-label">obra 02</p>
-        </article>
-
-        <article class="work">
-          <button
-            class="image-button"
-            type="button"
-            data-image="./obra3.JPG"
-            data-alt="Obra 3 de buenosdiazvalentina"
-            aria-label="Abrir obra 3"
-          >
-            <img
-              src="./obra3.JPG"
-              alt="Obra 3"
-              width="1200"
-              height="1600"
-              loading="lazy"
-            >
-          </button>
-          <p class="work-label">obra 03</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="contact-section" id="contacto">
-      <p class="contact-label">contacto</p>
-
-      <a
-        class="email-link"
-        href="mailto:buenosdiazvalentina@gmail.com"
-      >
-        buenosdiazvalentina@gmail.com
-      </a>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>© 2026 buenosdiazvalentina</p>
-    <a href="#inicio">volver arriba ↑</a>
-  </footer>
-
-  <dialog class="lightbox" id="lightbox">
-    <button
-      class="lightbox-close"
-      type="button"
-      aria-label="Cerrar imagen"
-    >
-      ×
-    </button>
-
-    <img id="lightbox-image" src="" alt="">
-  </dialog>
-
-  <script>
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightbox-image");
-    const closeButton = document.querySelector(".lightbox-close");
-
-    document.querySelectorAll(".image-button").forEach((button) => {
-      button.addEventListener("click", () => {
-        lightboxImage.src = button.dataset.image;
-        lightboxImage.alt = button.dataset.alt;
-        lightbox.showModal();
-      });
-    });
-
-    closeButton.addEventListener("click", () => {
-      lightbox.close();
-    });
-
-    lightbox.addEventListener("click", (event) => {
-      if (event.target === lightbox) {
-        lightbox.close();
-      }
-    });
-  </script>
 </body>
 </html>
