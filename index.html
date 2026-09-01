@@ -101,21 +101,22 @@
         color: #777777;
     }
     
-    /* Sección de Portada */
+    /* Sección de Portada con layout flexible para separar video y contacto */
     .seccion-portada {
         width: 100vw;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #000;
-        overflow-x: hidden;
+        justify-content: space-between;
+        background-color: #fcfcfc;
+        padding-top: 80px;
+        box-sizing: border-box;
     }
     .contenedor-video {
         position: relative;
         width: 100%;
-        height: 100vh;
+        height: calc(100vh - 220px);
+        min-height: 400px;
         cursor: pointer;
     }
     .video-portada {
@@ -145,26 +146,28 @@
         backdrop-filter: blur(4px);
     }
     
-    /* Contacto más alejado hacia abajo de la portada */
+    /* Contacto visible, claro y separado tanto en desktop, ipad como celular */
     .footer-contacto {
         width: 100%;
         background-color: #fcfcfc;
         text-align: center;
-        padding: 80px 0;
+        padding: 40px 20px;
         font-size: 0.8rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        text-transform: lowercase;
         border-top: 1px solid #f0f0f0;
+        flex-shrink: 0;
     }
     .footer-contacto a {
         color: #1a1a1a;
         text-decoration: none;
+        display: inline-block;
     }
     .footer-contacto a:hover {
         color: #777777;
     }
 
-    /* Página intermedia: Acuarela y Cerámica más centrada y con tipografía editorial */
+    /* Página intermedia: Acuarela y Cerámica en minúscula */
     .seccion-categorias {
         width: 100vw;
         height: 100vh;
@@ -181,7 +184,7 @@
         font-size: 0.9rem;
         font-weight: 400;
         letter-spacing: 0.2em;
-        text-transform: uppercase;
+        text-transform: lowercase;
         color: #1a1a1a;
         cursor: pointer;
         padding: 10px 20px;
@@ -193,7 +196,7 @@
         opacity: 1;
     }
 
-    /* Galería y textos en negro y gris */
+    /* Galería unificada: Imágenes del mismo tamaño estricto mediante object-fit */
     .galeria-obras {
         max-width: 1600px;
         margin: 0 auto;
@@ -202,19 +205,25 @@
     .grid-galeria {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 60px 30px;
+        gap: 40px 30px;
     }
     .tarjeta-obra {
         cursor: pointer;
+        width: 100%;
+        aspect-ratio: 4 / 5; /* Forzar proporción idéntica para todas */
+        overflow: hidden;
+        background-color: #f0f0f0;
     }
     .tarjeta-obra img {
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: cover; /* Garantiza que todas ocupen exactamente el mismo espacio sin deformarse */
         display: block;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease, transform 0.4s ease;
     }
     .tarjeta-obra img:hover {
-        opacity: 0.8;
+        opacity: 0.85;
+        transform: scale(1.02);
     }
     .btn-volver {
         background: none;
@@ -309,7 +318,7 @@
     @media (max-width: 900px) {
         .grid-galeria {
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 30px;
         }
         .site-header {
             padding: 20px;
@@ -367,13 +376,13 @@
                     <span class="texto-explorar">explorar obras [ + ]</span>
                 </div>
             </div>
-            <!-- Contacto separado y alejado de la portada -->
+            <!-- Contacto espaciado e impecable para celular, tablet y PC -->
             <div class="footer-contacto">
                 <a href="mailto:Buenosdiazvalentina@gmail.com">contacto: Buenosdiazvalentina@gmail.com</a>
             </div>
         </section>
 
-        <!-- 2. SECCIÓN DE CATEGORÍAS (Acuarela y Cerámica centradas y con tipografía editorial) -->
+        <!-- 2. SECCIÓN DE CATEGORÍAS (Acuarela y Cerámica en minúscula) -->
         <section class="seccion-categorias oculto" id="seccionCategorias">
             <button class="opcion-categoria" id="btnAcuarela">acuarela</button>
             <button class="opcion-categoria" id="btnCeramica">cerámica</button>
