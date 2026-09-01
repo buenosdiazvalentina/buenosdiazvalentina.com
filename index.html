@@ -78,12 +78,12 @@
         flex-direction: column;
         gap: 16px;
         z-index: 1100;
-        min-width: 220px;
+        min-width: 160px;
     }
     .dropdown-contacto.activo {
         display: flex;
     }
-    .dropdown-contacto a, .dropdown-contacto button {
+    .dropdown-contacto button {
         color: #2c2c2c;
         text-decoration: none;
         font-size: 0.8rem;
@@ -96,9 +96,99 @@
         padding: 0;
         font-family: inherit;
     }
-    .dropdown-contacto a:hover, .dropdown-contacto button:hover {
+    .dropdown-contacto button:hover {
         color: #777777;
     }
+    
+    /* Sección de Portada */
+    .seccion-portada {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        overflow: hidden;
+    }
+    .contenedor-video {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 60px);
+        cursor: pointer;
+    }
+    .video-portada {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .capa-interaccion {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    .contenedor-video:hover .capa-interaccion {
+        opacity: 1;
+    }
+    .texto-explorar {
+        color: #2c2c2c;
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        background: rgba(230, 230, 230, 0.85);
+        padding: 10px 20px;
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+    }
+    
+    /* Contacto debajo de la portada */
+    .footer-contacto {
+        width: 100%;
+        background-color: #fcfcfc;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        text-transform: lowercase;
+        border-top: 1px solid #f0f0f0;
+    }
+    .footer-contacto a {
+        color: #2c2c2c;
+        text-decoration: none;
+    }
+    .footer-contacto a:hover {
+        color: #777777;
+    }
+
+    /* Página intermedia: Acuarela y Cerámica */
+    .seccion-categorias {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+        background-color: #fcfcfc;
+        padding-top: 80px;
+    }
+    .opcion-categoria {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        letter-spacing: 0.2em;
+        text-transform: lowercase;
+        color: #2c2c2c;
+        cursor: pointer;
+        padding: 20px;
+        transition: opacity 0.3s ease;
+    }
+    .opcion-categoria:hover {
+        opacity: 0.5;
+    }
+
     /* Galería y textos en negro y gris */
     .galeria-obras {
         max-width: 1600px;
@@ -135,16 +225,10 @@
     .btn-volver:hover {
         color: #1a1a1a;
     }
-    /* Fondo de explorar obras en un gris más claro */
-    .texto-explorar {
-        color: #2c2c2c;
-        font-size: 0.8rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        background: rgba(230, 230, 230, 0.85);
-        padding: 10px 20px;
-        border-radius: 20px;
-        backdrop-filter: blur(4px);
+
+    /* Utilidad para ocultar */
+    .oculto {
+        display: none !important;
     }
 
     /* Estilos para el Modal / Vista Detalle de la Obra */
@@ -226,6 +310,10 @@
         .site-header {
             padding: 20px;
         }
+        .seccion-categorias {
+            flex-direction: column;
+            gap: 20px;
+        }
         .modal-contenido {
             flex-direction: column;
             gap: 20px;
@@ -244,7 +332,7 @@
 
     <!-- CABECERA ESTILO EDITORIAL -->
     <header class="site-header">
-        <!-- Menú de líneas a la izquierda -->
+        <!-- Menú de líneas a la izquierda (solo obras) -->
         <div class="menu-hamburguesa">
             <button class="btn-menu-lineas" id="btnMenuToggle" aria-label="Menú">
                 <span></span>
@@ -252,8 +340,7 @@
                 <span></span>
             </button>
             <div class="dropdown-contacto" id="menuDropdown">
-                <button id="btnIrGaleria">obras</button>
-                <a href="mailto:Buenosdiazvalentina@gmail.com">contacto: Buenosdiazvalentina@gmail.com</a>
+                <button id="btnIrCategorias">obras</button>
             </div>
         </div>
 
@@ -267,7 +354,7 @@
     <main class="site-main">
         <!-- 1. SECCIÓN DE PORTADA -->
         <section class="seccion-portada" id="seccionPortada">
-            <div class="contenedor-video" id="btnMostrarGaleria" title="Haz clic para ver las obras">
+            <div class="contenedor-video" id="btnMostrarCategorias" title="Haz clic para ver las categorías">
                 <video autoplay muted loop playsinline class="video-portada" id="videoPortada">
                     <source src="Portada2.mp4" type="video/mp4">
                     Tu navegador no soporta videos HTML5.
@@ -276,9 +363,19 @@
                     <span class="texto-explorar">explorar obras [ + ]</span>
                 </div>
             </div>
+            <!-- Contacto debajo de la portada -->
+            <div class="footer-contacto">
+                <a href="mailto:Buenosdiazvalentina@gmail.com">contacto: Buenosdiazvalentina@gmail.com</a>
+            </div>
         </section>
 
-        <!-- 2. SECCIÓN DE LA GALERÍA DE OBRAS -->
+        <!-- 2. SECCIÓN DE CATEGORÍAS (Acuarela y Cerámica) -->
+        <section class="seccion-categorias oculto" id="seccionCategorias">
+            <button class="opcion-categoria" id="btnAcuarela">acuarela</button>
+            <button class="opcion-categoria" id="btnCeramica">cerámica</button>
+        </section>
+
+        <!-- 3. SECCIÓN DE LA GALERÍA DE OBRAS -->
         <section class="galeria-obras oculto" id="seccionGaleria">
             <div class="grid-galeria">
                 <div class="tarjeta-obra" data-titulo="obra 1" data-tecnica="técnica mixta sobre papel" data-medidas="50 x 70 cm" data-anio="2026" data-img="Obra1.png">
@@ -307,7 +404,7 @@
             </div>
             
             <div class="contenedor-volver" style="text-align: center; margin-top: 60px;">
-                <button class="btn-volver" id="btnVolver">← volver al inicio</button>
+                <button class="btn-volver" id="btnVolver">← volver a categorías</button>
             </div>
         </section>
     </main>
@@ -338,11 +435,14 @@
                 });
             }
 
-            const btnMostrarGaleria = document.getElementById("btnMostrarGaleria");
-            const btnIrGaleria = document.getElementById("btnIrGaleria");
+            const btnMostrarCategorias = document.getElementById("btnMostrarCategorias");
+            const btnIrCategorias = document.getElementById("btnIrCategorias");
             const linkHome = document.getElementById("linkHome");
             const seccionPortada = document.getElementById("seccionPortada");
+            const seccionCategorias = document.getElementById("seccionCategorias");
             const seccionGaleria = document.getElementById("seccionGaleria");
+            const btnAcuarela = document.getElementById("btnAcuarela");
+            const btnCeramica = document.getElementById("btnCeramica");
             const btnVolver = document.getElementById("btnVolver");
             
             const btnMenuToggle = document.getElementById("btnMenuToggle");
@@ -367,14 +467,22 @@
                 menuDropdown.classList.remove("activo");
             });
 
-            function mostrarGaleria() {
+            function mostrarCategorias() {
                 seccionPortada.classList.add("oculto");
-                seccionGaleria.classList.remove("oculto");
+                seccionGaleria.classList.add("oculto");
+                seccionCategorias.classList.remove("oculto");
                 menuDropdown.classList.remove("activo");
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
+            function mostrarGaleriaAcuarela() {
+                seccionCategorias.classList.add("oculto");
+                seccionGaleria.classList.remove("oculto");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
             function mostrarPortada() {
+                seccionCategorias.classList.add("oculto");
                 seccionGaleria.classList.add("oculto");
                 seccionPortada.classList.remove("oculto");
                 menuDropdown.classList.remove("activo");
@@ -384,15 +492,20 @@
                 }
             }
 
-            btnMostrarGaleria.addEventListener("click", mostrarGaleria);
-            btnIrGaleria.addEventListener("click", mostrarGaleria);
+            btnMostrarCategorias.addEventListener("click", mostrarCategorias);
+            btnIrCategorias.addEventListener("click", mostrarCategorias);
+            btnAcuarela.addEventListener("click", mostrarGaleriaAcuarela);
+            btnCeramica.addEventListener("click", () => {
+                alert("Próximamente sección de cerámica");
+            });
+
             linkHome.addEventListener("click", (e) => {
                 e.preventDefault();
                 mostrarPortada();
             });
 
             if (btnVolver) {
-                btnVolver.addEventListener("click", mostrarPortada);
+                btnVolver.addEventListener("click", mostrarCategorias);
             }
 
             // Lógica para abrir el modal con la ficha técnica de cada obra
