@@ -8,60 +8,82 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <!-- 1. El video de portada va primero -->
-    <section class="seccion-portada" id="seccionPortada">
-        <div class="contenedor-video" id="btnMostrarGaleria" title="Haz clic para ver las obras">
-            <video autoplay muted loop playsinline class="video-portada">
-                <source src="Portada1.mp4" type="video/mp4">
-                Tu navegador no soporta videos HTML5.
-            </video>
-            <div class="capa-interaccion">
-                <span>Haz clic para ver las obras</span>
-            </div>
-        </div>
-    </section>
 
-    <!-- 2. La galería de obras va después (inicia oculta hasta que haces clic) -->
-    <section class="galeria-obras oculto" id="seccionGaleria">
-        <h2>Galería de Arte</h2>
-        
-        <div class="grid-galeria">
-            <div class="tarjeta-obra">
-                <img src="Obra1.png" alt="Obra de arte 1">
+    <!-- CABECERA ESTILO EDITORIAL (Minimánista) -->
+    <header class="site-header">
+        <h1><a href="#" id="linkHome">buenosdiazvalentina</a></h1>
+        <nav>
+            <button class="nav-link" id="btnIrGaleria">Obras</button>
+        </nav>
+    </header>
+
+    <main class="site-main">
+        <!-- 1. SECCIÓN DE PORTADA (Video minimalista) -->
+        <section class="seccion-portada" id="seccionPortada">
+            <div class="contenedor-video" id="btnMostrarGaleria" title="Haz clic para ver las obras">
+                <video autoplay muted loop playsinline class="video-portada">
+                    <source src="Portada1.mp4" type="video/mp4">
+                    Tu navegador no soporta videos HTML5.
+                </video>
+                <div class="capa-interaccion">
+                    <span class="texto-explorar">explorar obras [ + ]</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SECCIÓN DE LA GALERÍA DE OBRAS (Estilo editorial y limpio) -->
+        <section class="galeria-obras oculto" id="seccionGaleria">
+            <div class="grid-galeria">
+                <div class="tarjeta-obra">
+                    <img src="Obra1.png" alt="Obra de arte 1">
+                </div>
+                
+                <div class="tarjeta-obra">
+                    <img src="Obra2.png" alt="Obra de arte 2">
+                </div>
+                
+                <div class="tarjeta-obra">
+                    <img src="Obra3.png" alt="Obra de arte 3">
+                </div>
             </div>
             
-            <div class="tarjeta-obra">
-                <img src="Obra2.png" alt="Obra de arte 2">
+            <div class="contenedor-volver">
+                <button class="btn-volver" id="btnVolver">← volver al inicio</button>
             </div>
-            
-            <div class="tarjeta-obra">
-                <img src="Obra3.png" alt="Obra de arte 3">
-            </div>
-        </div>
-        
-        <button class="btn-volver" id="btnVolver">Volver a la portada</button>
-    </section>
+        </section>
+    </main>
 
-    <!-- Script para controlar la interacción del video -->
+    <!-- Script de control de navegación -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const btnMostrarGaleria = document.getElementById("btnMostrarGaleria");
+            const btnIrGaleria = document.getElementById("btnIrGaleria");
+            const linkHome = document.getElementById("linkHome");
             const seccionPortada = document.getElementById("seccionPortada");
             const seccionGaleria = document.getElementById("seccionGaleria");
             const btnVolver = document.getElementById("btnVolver");
 
-            btnMostrarGaleria.addEventListener("click", () => {
+            function mostrarGaleria() {
                 seccionPortada.classList.add("oculto");
                 seccionGaleria.classList.remove("oculto");
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function mostrarPortada() {
+                seccionGaleria.classList.add("oculto");
+                seccionPortada.classList.remove("oculto");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            btnMostrarGaleria.addEventListener("click", mostrarGaleria);
+            btnIrGaleria.addEventListener("click", mostrarGaleria);
+            linkHome.addEventListener("click", (e) => {
+                e.preventDefault();
+                mostrarPortada();
             });
 
             if (btnVolver) {
-                btnVolver.addEventListener("click", () => {
-                    seccionGaleria.classList.add("oculto");
-                    seccionPortada.classList.remove("oculto");
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
+                btnVolver.addEventListener("click", mostrarPortada);
             }
         });
     </script>
