@@ -3,29 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="description" content="buenosdiazvalentina — obras">
   <title>buenosdiazvalentina</title>
-
   <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- 1. El video de portada va primero -->
+    <section class="seccion-portada" id="seccionPortada">
+        <div class="contenedor-video" id="btnMostrarGaleria" title="Haz clic para ver las obras">
+            <video autoplay muted loop playsinline class="video-portada">
+                <source src="Portada1.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+            <div class="capa-interaccion">
+                <span>Haz clic para ver las obras</span>
+            </div>
+        </div>
+    </section>
 
-<body><section class="galeria-obras">
-    <h2>Galería de Arte</h2>
-    
-    <div class="grid-galeria">
-        <div class="tarjeta-obra">
-            <img src="Obra1.png" alt="Obra de arte 1">
+    <!-- 2. La galería de obras va después (inicia oculta hasta que haces clic) -->
+    <section class="galeria-obras oculto" id="seccionGaleria">
+        <h2>Galería de Arte</h2>
+        
+        <div class="grid-galeria">
+            <div class="tarjeta-obra">
+                <img src="Obra1.png" alt="Obra de arte 1">
+            </div>
+            
+            <div class="tarjeta-obra">
+                <img src="Obra2.png" alt="Obra de arte 2">
+            </div>
+            
+            <div class="tarjeta-obra">
+                <img src="Obra3.png" alt="Obra de arte 3">
+            </div>
         </div>
         
-        <div class="tarjeta-obra">
-            <img src="Obra2.png" alt="Obra de arte 2">
-        </div>
-        
-        <div class="tarjeta-obra">
-            <img src="Obra3.png" alt="Obra de arte 3">
-        </div>
-    </div>
-</section>
+        <button class="btn-volver" id="btnVolver">Volver a la portada</button>
+    </section>
 
+    <!-- Script para controlar la interacción del video -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnMostrarGaleria = document.getElementById("btnMostrarGaleria");
+            const seccionPortada = document.getElementById("seccionPortada");
+            const seccionGaleria = document.getElementById("seccionGaleria");
+            const btnVolver = document.getElementById("btnVolver");
+
+            btnMostrarGaleria.addEventListener("click", () => {
+                seccionPortada.classList.add("oculto");
+                seccionGaleria.classList.remove("oculto");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            if (btnVolver) {
+                btnVolver.addEventListener("click", () => {
+                    seccionGaleria.classList.add("oculto");
+                    seccionPortada.classList.remove("oculto");
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
