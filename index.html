@@ -7,9 +7,46 @@
   <title>buenosdiazvalentina</title>
   <link rel="stylesheet" href="./style.css">
   <style>
-    /* Estilos adicionales para el menú desplegable minimalista */
+    /* Estilos estéticos avanzados estilo editorial boutique */
+    body {
+        background-color: #fcfcfc;
+        color: #2c2c2c;
+    }
+    .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 40px;
+        background: rgba(252, 252, 252, 0.95);
+        border-bottom: 1px solid #f0f0f0;
+        z-index: 1000;
+    }
+    /* Nombre al centro */
+    .site-header h1 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+    }
+    .site-header h1 a {
+        text-decoration: none;
+        color: #1a1a1a;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        font-size: 0.9rem;
+        text-transform: lowercase;
+    }
+    .site-header h1 a:hover {
+        color: #777777;
+    }
+    /* Menú a la izquierda */
     .menu-hamburguesa {
         position: relative;
+        z-index: 1101;
     }
     .btn-menu-lineas {
         background: none;
@@ -18,40 +55,97 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 24px;
-        height: 18px;
+        width: 22px;
+        height: 14px;
         padding: 0;
     }
     .btn-menu-lineas span {
         display: block;
         width: 100%;
-        height: 1.5px;
-        background-color: #111;
-        transition: transform 0.3s ease, opacity 0.3s ease;
+        height: 1px;
+        background-color: #1a1a1a;
+        transition: transform 0.3s ease;
     }
     .dropdown-contacto {
         position: absolute;
         top: 35px;
-        right: 0;
+        left: 0;
         background: #ffffff;
         border: 1px solid #eaeaea;
-        padding: 15px 20px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         display: none;
-        white-space: nowrap;
+        flex-direction: column;
+        gap: 16px;
         z-index: 1100;
+        min-width: 220px;
     }
     .dropdown-contacto.activo {
+        display: flex;
+    }
+    .dropdown-contacto a, .dropdown-contacto button {
+        color: #2c2c2c;
+        text-decoration: none;
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        text-transform: lowercase;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        padding: 0;
+        font-family: inherit;
+    }
+    .dropdown-contacto a:hover, .dropdown-contacto button:hover {
+        color: #777777;
+    }
+    /* Galería y textos en negro y gris */
+    .galeria-obras {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 140px 40px 80px 40px;
+    }
+    .grid-galeria {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 60px 30px;
+    }
+    .tarjeta-obra img {
+        width: 100%;
+        height: auto;
         display: block;
     }
-    .dropdown-contacto a {
-        color: #111;
-        text-decoration: none;
+    .btn-volver {
+        background: none;
+        border: none;
         font-size: 0.85rem;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.15em;
+        color: #555555;
+        cursor: pointer;
+        text-transform: lowercase;
+        padding: 10px 20px;
     }
-    .dropdown-contacto a:hover {
-        opacity: 0.6;
+    .btn-volver:hover {
+        color: #1a1a1a;
+    }
+    .texto-explorar {
+        color: #ffffff;
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+    }
+    @media (max-width: 900px) {
+        .grid-galeria {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .site-header {
+            padding: 20px;
+        }
     }
   </style>
 </head>
@@ -59,22 +153,24 @@
 
     <!-- CABECERA ESTILO EDITORIAL -->
     <header class="site-header">
-        <h1><a href="#" id="linkHome">buenosdiazvalentina</a></h1>
-        <nav style="display: flex; align-items: center; gap: 20px;">
-            <button class="nav-link" id="btnIrGaleria">Obras</button>
-            
-            <!-- Menú de líneas minimalista con el item de contacto -->
-            <div class="menu-hamburguesa">
-                <button class="btn-menu-lineas" id="btnMenuToggle" aria-label="Menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="dropdown-contacto" id="menuDropdown">
-                    <a href="mailto:buenosdiazvalentina@gmail.com">contacto: buenosdiazvalentina@gmail.com</a>
-                </div>
+        <!-- Menú de líneas a la izquierda -->
+        <div class="menu-hamburguesa">
+            <button class="btn-menu-lineas" id="btnMenuToggle" aria-label="Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="dropdown-contacto" id="menuDropdown">
+                <button id="btnIrGaleria">obras</button>
+                <a href="mailto:Buenosdiazvalentina@gmail.com">contacto: Buenosdiazvalentina@gmail.com</a>
             </div>
-        </nav>
+        </div>
+
+        <!-- Nombre al centro -->
+        <h1><a href="#" id="linkHome">buenosdiazvalentina</a></h1>
+        
+        <!-- Espaciador invisible para equilibrar el flexbox -->
+        <div style="width: 22px;"></div>
     </header>
 
     <main class="site-main">
@@ -107,13 +203,13 @@
                 </div>
             </div>
             
-            <div class="contenedor-volver">
+            <div class="contenedor-volver" style="text-align: center; margin-top: 60px;">
                 <button class="btn-volver" id="btnVolver">← volver al inicio</button>
             </div>
         </section>
     </main>
 
-    <!-- Script de control de navegación y menú desplegable -->
+    <!-- Script de control -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const videoPortada = document.getElementById("videoPortada");
@@ -133,13 +229,11 @@
             const btnMenuToggle = document.getElementById("btnMenuToggle");
             const menuDropdown = document.getElementById("menuDropdown");
 
-            // Control del menú desplegable de líneas
             btnMenuToggle.addEventListener("click", (e) => {
                 e.stopPropagation();
                 menuDropdown.classList.toggle("activo");
             });
 
-            // Cerrar menú si se hace clic fuera de él
             document.addEventListener("click", () => {
                 menuDropdown.classList.remove("activo");
             });
