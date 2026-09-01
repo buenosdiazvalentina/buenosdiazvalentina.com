@@ -7,7 +7,7 @@
   <title>buenosdiazvalentina</title>
   <link rel="stylesheet" href="./style.css">
   <style>
-    /* Estilos actualizados para el menú desplegable minimalista */
+    /* Estilos adicionales para el menú desplegable minimalista */
     .menu-hamburguesa {
         position: relative;
     }
@@ -38,27 +38,19 @@
         padding: 15px 20px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         display: none;
-        flex-direction: column;
-        gap: 12px;
+        white-space: nowrap;
         z-index: 1100;
-        min-width: 180px;
     }
     .dropdown-contacto.activo {
-        display: flex;
+        display: block;
     }
-    .dropdown-contacto a, .dropdown-contacto button {
+    .dropdown-contacto a {
         color: #111;
         text-decoration: none;
         font-size: 0.85rem;
         letter-spacing: 0.05em;
-        background: none;
-        border: none;
-        text-align: left;
-        cursor: pointer;
-        padding: 0;
-        font-family: inherit;
     }
-    .dropdown-contacto a:hover, .dropdown-contacto button:hover {
+    .dropdown-contacto a:hover {
         opacity: 0.6;
     }
   </style>
@@ -68,8 +60,10 @@
     <!-- CABECERA ESTILO EDITORIAL -->
     <header class="site-header">
         <h1><a href="#" id="linkHome">buenosdiazvalentina</a></h1>
-        <nav style="display: flex; align-items: center;">
-            <!-- Menú de líneas minimalista que contiene obras y contacto -->
+        <nav style="display: flex; align-items: center; gap: 20px;">
+            <button class="nav-link" id="btnIrGaleria">Obras</button>
+            
+            <!-- Menú de líneas minimalista con el item de contacto -->
             <div class="menu-hamburguesa">
                 <button class="btn-menu-lineas" id="btnMenuToggle" aria-label="Menú">
                     <span></span>
@@ -77,7 +71,6 @@
                     <span></span>
                 </button>
                 <div class="dropdown-contacto" id="menuDropdown">
-                    <button id="btnIrGaleria">obras</button>
                     <a href="mailto:buenosdiazvalentina@gmail.com">contacto: buenosdiazvalentina@gmail.com</a>
                 </div>
             </div>
