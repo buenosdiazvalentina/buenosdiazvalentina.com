@@ -110,10 +110,17 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 60px 30px;
     }
+    .tarjeta-obra {
+        cursor: pointer;
+    }
     .tarjeta-obra img {
         width: 100%;
         height: auto;
         display: block;
+        transition: opacity 0.3s ease;
+    }
+    .tarjeta-obra img:hover {
+        opacity: 0.8;
     }
     .btn-volver {
         background: none;
@@ -138,6 +145,78 @@
         border-radius: 20px;
         backdrop-filter: blur(4px);
     }
+
+    /* Estilos para el Modal / Vista Detalle de la Obra */
+    .modal-obra {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(252, 252, 252, 0.96);
+        z-index: 2000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+    }
+    .modal-obra.activo {
+        display: flex;
+    }
+    .modal-contenido {
+        display: flex;
+        max-width: 1100px;
+        width: 100%;
+        gap: 60px;
+        align-items: center;
+    }
+    .modal-imagen-contenedor {
+        flex: 1;
+        max-height: 80vh;
+        display: flex;
+        justify-content: center;
+    }
+    .modal-imagen-contenedor img {
+        max-width: 100%;
+        max-height: 75vh;
+        object-fit: contain;
+    }
+    .modal-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .modal-info h3 {
+        font-size: 1.1rem;
+        font-weight: 400;
+        letter-spacing: 0.15em;
+        text-transform: lowercase;
+        color: #1a1a1a;
+    }
+    .modal-info p {
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        color: #666666;
+        text-transform: lowercase;
+        line-height: 1.6;
+    }
+    .btn-cerrar-modal {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        background: none;
+        border: none;
+        font-size: 1rem;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        color: #1a1a1a;
+        text-transform: lowercase;
+    }
+    .btn-cerrar-modal:hover {
+        color: #777777;
+    }
+
     @media (max-width: 900px) {
         .grid-galeria {
             grid-template-columns: 1fr;
@@ -145,6 +224,17 @@
         }
         .site-header {
             padding: 20px;
+        }
+        .modal-contenido {
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        .modal-obra {
+            padding: 20px;
+            align-items: flex-start;
+            padding-top: 80px;
         }
     }
   </style>
@@ -190,27 +280,27 @@
         <!-- 2. SECCIÓN DE LA GALERÍA DE OBRAS -->
         <section class="galeria-obras oculto" id="seccionGaleria">
             <div class="grid-galeria">
-                <div class="tarjeta-obra">
+                <div class="tarjeta-obra" data-titulo="obra 1" data-tecnica="técnica mixta sobre papel" data-medidas="50 x 70 cm" data-anio="2026" data-img="Obra1.png">
                     <img src="Obra1.png" alt="Obra de arte 1">
                 </div>
                 
-                <div class="tarjeta-obra">
+                <div class="tarjeta-obra" data-titulo="obra 2" data-tecnica="acuarela sobre papel" data-medidas="50 x 70 cm" data-anio="2026" data-img="Obra2.png">
                     <img src="Obra2.png" alt="Obra de arte 2">
                 </div>
                 
-                <div class="tarjeta-obra">
+                <div class="tarjeta-obra" data-titulo="obra 3" data-tecnica="acuarela sobre papel" data-medidas="50 x 70 cm" data-anio="2026" data-img="Obra3.png">
                     <img src="Obra3.png" alt="Obra de arte 3">
                 </div>
 
-                <div class="tarjeta-obra">
+                <div class="tarjeta-obra" data-titulo="obra 4" data-tecnica="acuarela y tinta" data-medidas="50 x 70 cm" data-anio="2026" data-img="obra4.png">
                     <img src="obra4.png" alt="Obra de arte 4">
                 </div>
                 
-                <div class="tarjeta-obra">
+                <div class="tarjeta-obra" data-titulo="obra 5" data-tecnica="acuarela sobre papel" data-medidas="50 x 70 cm" data-anio="2026" data-img="obra5.png">
                     <img src="obra5.png" alt="Obra de arte 5">
                 </div>
                 
-                <div class="tarjeta-obra">
+                <div class="tarjeta-obra" data-titulo="obra 6" data-tecnica="acuarela sobre papel" data-medidas="50 x 70 cm" data-anio="2026" data-img="obra6.png">
                     <img src="obra6.png" alt="Obra de arte 6">
                 </div>
             </div>
@@ -220,6 +310,22 @@
             </div>
         </section>
     </main>
+
+    <!-- MODAL / VISTA DETALLE DE LA OBRA -->
+    <div class="modal-obra" id="modalObra">
+        <button class="btn-cerrar-modal" id="btnCerrarModal">cerrar [ × ]</button>
+        <div class="modal-contenido">
+            <div class="modal-imagen-contenedor">
+                <img id="modalImg" src="" alt="Vista ampliada de la obra">
+            </div>
+            <div class="modal-info">
+                <h3 id="modalTitulo">título de la obra</h3>
+                <p id="modalTecnica">técnica: --</p>
+                <p id="modalMedidas">medidas: --</p>
+                <p id="modalAnio">año: --</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Script de control -->
     <script>
@@ -240,6 +346,16 @@
             
             const btnMenuToggle = document.getElementById("btnMenuToggle");
             const menuDropdown = document.getElementById("menuDropdown");
+
+            // Elementos del Modal
+            const modalObra = document.getElementById("modalObra");
+            const modalImg = document.getElementById("modalImg");
+            const modalTitulo = document.getElementById("modalTitulo");
+            const modalTecnica = document.getElementById("modalTecnica");
+            const modalMedidas = document.getElementById("modalMedidas");
+            const modalAnio = document.getElementById("modalAnio");
+            const btnCerrarModal = document.getElementById("btnCerrarModal");
+            const tarjetasObra = document.querySelectorAll(".tarjeta-obra");
 
             btnMenuToggle.addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -277,6 +393,31 @@
             if (btnVolver) {
                 btnVolver.addEventListener("click", mostrarPortada);
             }
+
+            // Lógica para abrir el modal con la ficha técnica de cada obra
+            tarjetasObra.forEach(tarjeta => {
+                tarjeta.addEventListener("click", () => {
+                    modalImg.src = tarjeta.getAttribute("data-img");
+                    modalTitulo.textContent = tarjeta.getAttribute("data-titulo");
+                    modalTecnica.textContent = "técnica: " + tarjeta.getAttribute("data-tecnica");
+                    modalMedidas.textContent = "medidas: " + tarjeta.getAttribute("data-medidas");
+                    modalAnio.textContent = "año: " + tarjeta.getAttribute("data-anio");
+                    
+                    modalObra.classList.add("activo");
+                });
+            });
+
+            // Lógica para cerrar el modal
+            function cerrarModal() {
+                modalObra.classList.remove("activo");
+            }
+
+            btnCerrarModal.addEventListener("click", cerrarModal);
+            modalObra.addEventListener("click", (e) => {
+                if (e.target === modalObra) {
+                    cerrarModal();
+                }
+            });
         });
     </script>
 </body>
