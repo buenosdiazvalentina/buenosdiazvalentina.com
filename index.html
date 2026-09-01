@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta name="description" content="buenosdiazvalentina — obras">
   <title>buenosdiazvalentina</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
   <header class="site-header">
     <a class="brand" href="#inicio">buenosdiazvalentina</a>
 
-    <nav class="site-nav" aria-label="Navegación">
+    <nav class="site-nav" aria-label="Navegación principal">
       <a href="#obras">obras</a>
       <a href="#contacto">contacto</a>
     </nav>
@@ -24,13 +25,15 @@
       <button
         class="image-button hero-image"
         type="button"
-        data-image="portada.jpg"
+        data-image="./portada.JPG"
         data-alt="Obra de portada de buenosdiazvalentina"
-        aria-label="Abrir obra de portada"
+        aria-label="Abrir imagen de portada"
       >
         <img
-          src="portada.jpg"
+          src="./portada.JPG"
           alt="Obra de portada de buenosdiazvalentina"
+          width="1600"
+          height="2000"
         >
       </button>
     </section>
@@ -46,13 +49,15 @@
           <button
             class="image-button"
             type="button"
-            data-image="obra01.jpg"
-            data-alt="Obra 01 de buenosdiazvalentina"
-            aria-label="Abrir obra 01"
+            data-image="./obra1.JPG"
+            data-alt="Obra 1 de buenosdiazvalentina"
+            aria-label="Abrir obra 1"
           >
             <img
-              src="obra01.jpg"
-              alt="Obra 01"
+              src="./obra1.JPG"
+              alt="Obra 1"
+              width="1200"
+              height="1600"
               loading="lazy"
             >
           </button>
@@ -63,13 +68,15 @@
           <button
             class="image-button"
             type="button"
-            data-image="obra02.jpg"
-            data-alt="Obra 02 de buenosdiazvalentina"
-            aria-label="Abrir obra 02"
+            data-image="./obra2.JPG"
+            data-alt="Obra 2 de buenosdiazvalentina"
+            aria-label="Abrir obra 2"
           >
             <img
-              src="obra02.jpg"
-              alt="Obra 02"
+              src="./obra2.JPG"
+              alt="Obra 2"
+              width="1200"
+              height="1600"
               loading="lazy"
             >
           </button>
@@ -80,34 +87,19 @@
           <button
             class="image-button"
             type="button"
-            data-image="obra03.jpg"
-            data-alt="Obra 03 de buenosdiazvalentina"
-            aria-label="Abrir obra 03"
+            data-image="./obra3.JPG"
+            data-alt="Obra 3 de buenosdiazvalentina"
+            aria-label="Abrir obra 3"
           >
             <img
-              src="obra03.jpg"
-              alt="Obra 03"
+              src="./obra3.JPG"
+              alt="Obra 3"
+              width="1200"
+              height="1600"
               loading="lazy"
             >
           </button>
           <p class="work-label">obra 03</p>
-        </article>
-
-        <article class="work work-wide">
-          <button
-            class="image-button"
-            type="button"
-            data-image="isla-valentina.jpg"
-            data-alt="Isla Valentina, obra de buenosdiazvalentina"
-            aria-label="Abrir Isla Valentina"
-          >
-            <img
-              src="isla-valentina.jpg"
-              alt="Isla Valentina"
-              loading="lazy"
-            >
-          </button>
-          <p class="work-label">isla valentina</p>
         </article>
       </div>
     </section>
@@ -115,7 +107,10 @@
     <section class="contact-section" id="contacto">
       <p class="contact-label">contacto</p>
 
-      <a class="email-link" href="mailto:buenosdiazvalentina@gmail.com">
+      <a
+        class="email-link"
+        href="mailto:buenosdiazvalentina@gmail.com"
+      >
         buenosdiazvalentina@gmail.com
       </a>
     </section>
@@ -127,7 +122,14 @@
   </footer>
 
   <dialog class="lightbox" id="lightbox">
-    <button class="lightbox-close" type="button" aria-label="Cerrar imagen">×</button>
+    <button
+      class="lightbox-close"
+      type="button"
+      aria-label="Cerrar imagen"
+    >
+      ×
+    </button>
+
     <img id="lightbox-image" src="" alt="">
   </dialog>
 
