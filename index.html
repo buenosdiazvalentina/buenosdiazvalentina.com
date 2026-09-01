@@ -7,10 +7,11 @@
   <title>BUENOSDIAZVALENTINA</title>
   <link rel="stylesheet" href="./style.css">
   <style>
-    /* Estilos estéticos avanzados estilo editorial boutique */
+    /* Estilos estéticos avanzados estilo editorial boutique unificados */
     body {
         background-color: #fcfcfc;
         color: #2c2c2c;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     .site-header {
         position: fixed;
@@ -24,6 +25,7 @@
         background: rgba(252, 252, 252, 0.95);
         border-bottom: 1px solid #f0f0f0;
         z-index: 1000;
+        font-family: inherit;
     }
     /* Nombre al centro en mayúscula */
     .site-header h1 {
@@ -39,6 +41,7 @@
         letter-spacing: 0.2em;
         font-size: 0.9rem;
         text-transform: uppercase;
+        font-family: inherit;
     }
     .site-header h1 a:hover {
         color: #777777;
@@ -79,6 +82,7 @@
         gap: 16px;
         z-index: 1100;
         min-width: 160px;
+        font-family: inherit;
     }
     .dropdown-contacto.activo {
         display: flex;
@@ -142,6 +146,7 @@
         padding: 10px 20px;
         border-radius: 20px;
         backdrop-filter: blur(4px);
+        font-family: inherit;
     }
     
     /* Contacto debajo de la portada */
@@ -154,16 +159,18 @@
         letter-spacing: 0.15em;
         text-transform: lowercase;
         border-top: 1px solid #f0f0f0;
+        font-family: inherit;
     }
     .footer-contacto a {
         color: #2c2c2c;
         text-decoration: none;
+        font-family: inherit;
     }
     .footer-contacto a:hover {
         color: #777777;
     }
 
-    /* Página intermedia: Acuarela y Cerámica */
+    /* Página intermedia: Acuarela y Cerámica más centrados y con tipografía unificada */
     .seccion-categorias {
         width: 100vw;
         height: 100vh;
@@ -172,18 +179,20 @@
         align-items: center;
         gap: 60px;
         background-color: #fcfcfc;
-        padding-top: 80px;
+        padding-top: 0;
+        font-family: inherit;
     }
     .opcion-categoria {
         background: none;
         border: none;
-        font-size: 1.2rem;
+        font-size: 0.95rem;
         letter-spacing: 0.2em;
         text-transform: lowercase;
         color: #2c2c2c;
         cursor: pointer;
-        padding: 20px;
+        padding: 15px 30px;
         transition: opacity 0.3s ease;
+        font-family: inherit;
     }
     .opcion-categoria:hover {
         opacity: 0.5;
@@ -194,6 +203,7 @@
         max-width: 1600px;
         margin: 0 auto;
         padding: 140px 40px 80px 40px;
+        font-family: inherit;
     }
     .grid-galeria {
         display: grid;
@@ -221,6 +231,7 @@
         cursor: pointer;
         text-transform: lowercase;
         padding: 10px 20px;
+        font-family: inherit;
     }
     .btn-volver:hover {
         color: #1a1a1a;
@@ -244,6 +255,7 @@
         justify-content: center;
         align-items: center;
         padding: 40px;
+        font-family: inherit;
     }
     .modal-obra.activo {
         display: flex;
@@ -278,6 +290,7 @@
         letter-spacing: 0.15em;
         text-transform: lowercase;
         color: #1a1a1a;
+        font-family: inherit;
     }
     .modal-info p {
         font-size: 0.85rem;
@@ -285,6 +298,7 @@
         color: #666666;
         text-transform: lowercase;
         line-height: 1.6;
+        font-family: inherit;
     }
     .btn-cerrar-modal {
         position: absolute;
@@ -297,6 +311,7 @@
         cursor: pointer;
         color: #1a1a1a;
         text-transform: lowercase;
+        font-family: inherit;
     }
     .btn-cerrar-modal:hover {
         color: #777777;
