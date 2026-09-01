@@ -6,20 +6,79 @@
   <meta name="description" content="buenosdiazvalentina — obras">
   <title>buenosdiazvalentina</title>
   <link rel="stylesheet" href="./style.css">
+  <style>
+    /* Estilos adicionales para el menú desplegable minimalista */
+    .menu-hamburguesa {
+        position: relative;
+    }
+    .btn-menu-lineas {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        padding: 0;
+    }
+    .btn-menu-lineas span {
+        display: block;
+        width: 100%;
+        height: 1.5px;
+        background-color: #111;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .dropdown-contacto {
+        position: absolute;
+        top: 35px;
+        right: 0;
+        background: #ffffff;
+        border: 1px solid #eaeaea;
+        padding: 15px 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        display: none;
+        white-space: nowrap;
+        z-index: 1100;
+    }
+    .dropdown-contacto.activo {
+        display: block;
+    }
+    .dropdown-contacto a {
+        color: #111;
+        text-decoration: none;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+    }
+    .dropdown-contacto a:hover {
+        opacity: 0.6;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- CABECERA ESTILO EDITORIAL (Minimalista) -->
+    <!-- CABECERA ESTILO EDITORIAL -->
     <header class="site-header">
         <h1><a href="#" id="linkHome">buenosdiazvalentina</a></h1>
-        <nav class="site-nav">
+        <nav style="display: flex; align-items: center; gap: 20px;">
             <button class="nav-link" id="btnIrGaleria">Obras</button>
-            <a href="mailto:buenosdiazvalentina@gmail.com" class="nav-link">Contacto</a>
+            
+            <!-- Menú de líneas minimalista con el item de contacto -->
+            <div class="menu-hamburguesa">
+                <button class="btn-menu-lineas" id="btnMenuToggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="dropdown-contacto" id="menuDropdown">
+                    <a href="mailto:buenosdiazvalentina@gmail.com">contacto: buenosdiazvalentina@gmail.com</a>
+                </div>
+            </div>
         </nav>
     </header>
 
     <main class="site-main">
-        <!-- 1. SECCIÓN DE PORTADA (Video minimalista con autoplay forzado) -->
+        <!-- 1. SECCIÓN DE PORTADA -->
         <section class="seccion-portada" id="seccionPortada">
             <div class="contenedor-video" id="btnMostrarGaleria" title="Haz clic para ver las obras">
                 <video autoplay muted loop playsinline class="video-portada" id="videoPortada">
@@ -32,7 +91,7 @@
             </div>
         </section>
 
-        <!-- 2. SECCIÓN DE LA GALERÍA DE OBRAS (Estilo editorial y limpio) -->
+        <!-- 2. SECCIÓN DE LA GALERÍA DE OBRAS -->
         <section class="galeria-obras oculto" id="seccionGaleria">
             <div class="grid-galeria">
                 <div class="tarjeta-obra">
@@ -54,7 +113,7 @@
         </section>
     </main>
 
-    <!-- Script de control de navegación y reproducción automática -->
+    <!-- Script de control de navegación y menú desplegable -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const videoPortada = document.getElementById("videoPortada");
@@ -70,16 +129,32 @@
             const seccionPortada = document.getElementById("seccionPortada");
             const seccionGaleria = document.getElementById("seccionGaleria");
             const btnVolver = document.getElementById("btnVolver");
+            
+            const btnMenuToggle = document.getElementById("btnMenuToggle");
+            const menuDropdown = document.getElementById("menuDropdown");
+
+            // Control del menú desplegable de líneas
+            btnMenuToggle.addEventListener("click", (e) => {
+                e.stopPropagation();
+                menuDropdown.classList.toggle("activo");
+            });
+
+            // Cerrar menú si se hace clic fuera de él
+            document.addEventListener("click", () => {
+                menuDropdown.classList.remove("activo");
+            });
 
             function mostrarGaleria() {
                 seccionPortada.classList.add("oculto");
                 seccionGaleria.classList.remove("oculto");
+                menuDropdown.classList.remove("activo");
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
             function mostrarPortada() {
                 seccionGaleria.classList.add("oculto");
                 seccionPortada.classList.remove("oculto");
+                menuDropdown.classList.remove("activo");
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 if (videoPortada) {
                     videoPortada.play().catch(() => {});
