@@ -18,10 +18,10 @@
     </header>
 
     <main class="site-main">
-        <!-- 1. SECCIÓN DE PORTADA (Video minimalista) -->
+        <!-- 1. SECCIÓN DE PORTADA (Video minimalista con autoplay forzado) -->
         <section class="seccion-portada" id="seccionPortada">
             <div class="contenedor-video" id="btnMostrarGaleria" title="Haz clic para ver las obras">
-                <video autoplay muted loop playsinline class="video-portada">
+                <video autoplay muted loop playsinline class="video-portada" id="videoPortada">
                     <source src="Portada1.mp4" type="video/mp4">
                     Tu navegador no soporta videos HTML5.
                 </video>
@@ -53,9 +53,16 @@
         </section>
     </main>
 
-    <!-- Script de control de navegación -->
+    <!-- Script de control de navegación y reproducción automática -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const videoPortada = document.getElementById("videoPortada");
+            if (videoPortada) {
+                videoPortada.play().catch(error => {
+                    console.log("Reproducción automática gestionada por política del navegador:", error);
+                });
+            }
+
             const btnMostrarGaleria = document.getElementById("btnMostrarGaleria");
             const btnIrGaleria = document.getElementById("btnIrGaleria");
             const linkHome = document.getElementById("linkHome");
@@ -73,6 +80,9 @@
                 seccionGaleria.classList.add("oculto");
                 seccionPortada.classList.remove("oculto");
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (videoPortada) {
+                    videoPortada.play().catch(() => {});
+                }
             }
 
             btnMostrarGaleria.addEventListener("click", mostrarGaleria);
